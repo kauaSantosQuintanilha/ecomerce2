@@ -20,6 +20,7 @@ public class Produto {
     private Categoria categoria;
 
 
+
     public Produto() {}
     public Produto(Long id, String nome, String descricao, String imagem, Double preco, Categoria categoria) {
         this.id = id;

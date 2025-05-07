@@ -1,5 +1,6 @@
 package com.ecomerce2.dto;
 
+import com.ecomerce2.enums.Categoria;
 import com.ecomerce2.models.Produto;
 import lombok.Data;
 
@@ -10,7 +11,7 @@ public class ProdutoDTO {
     private String descricao;
     private String imagem;
     private Double preco;
-    private String categoria;
+    private Categoria categoria;
     public ProdutoDTO() {
     }
 

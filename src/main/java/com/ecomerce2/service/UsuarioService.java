@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsuarioService {
     @Autowired
-    private static UsuarioRepository usuarioRepository;
-    public static UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) {
+    private  UsuarioRepository usuarioRepository;
+    public UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = converterUsuarioDTOParaUsuario(usuarioDTO);
         usuario = usuarioRepository.save(usuario);
         return converterUsuarioParaUsuarioDTO(usuario);

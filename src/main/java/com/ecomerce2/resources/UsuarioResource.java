@@ -11,34 +11,34 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/usuarios")
 public class UsuarioResource {
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioService service;
 
-    @GetMapping("/{id}")
-    public UsuarioDTO buscarUsuarioPorId(@PathVariable Long id) {
-        Usuario usuario = usuarioService.buscarUsuarioPorId(id);
-        return UsuarioService.converterUsuarioParaUsuarioDTO(usuario);
-    }
-
+      @GetMapping("/{id}")
+      public ResponseEntity<UsuarioDTO> buscarUsuarioPorId(@PathVariable Long id) {
+          Usuario usuario = service.buscarUsuarioPorId(id);
+          return ResponseEntity.ok(service.converterUsuarioParaUsuarioDTO(usuario));
+      }
     @GetMapping("/buscar")
-    public UsuarioDTO buscarUsuarioPorEmail(@RequestParam String email) {
-        Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
-        return UsuarioService.converterUsuarioParaUsuarioDTO(usuario);
-    }
+    public ResponseEntity<UsuarioDTO> buscarUsuarioPorEmail(@RequestParam String email) {
+        Usuario usuario = service.buscarUsuarioPorEmail(email);
+        return ResponseEntity.ok(service.converterUsuarioParaUsuarioDTO(usuario));
 
+    }
     @PostMapping("/")
     public ResponseEntity<UsuarioDTO> criarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-        usuarioDTO = UsuarioService.salvarUsuario(usuarioDTO);
-        return ResponseEntity.ok(usuarioDTO);
+        UsuarioDTO usuario = service.salvarUsuario(usuarioDTO);
+        return ResponseEntity.ok(usuario);
     }
-    @PutMapping()
-    public ResponseEntity<UsuarioDTO> atualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-        usuarioDTO = UsuarioService.salvarUsuario(usuarioDTO);
-        return ResponseEntity.ok(usuarioDTO);
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> atualizarUsuario(@PathVariable Long id,
+                                                        @RequestBody UsuarioDTO usuarioDTO) {
+        UsuarioDTO usuario = service.salvarUsuario(usuarioDTO);
+        return ResponseEntity.ok(usuario);
     }
-
-    @DeleteMapping()
-    public ResponseEntity<Void> deletarUsuario(@RequestBody UsuarioDTO usuarioDTO)  {
-        usuarioService.deletarUsuario(usuarioDTO.getId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
+        service.deletarUsuario(id);
         return ResponseEntity.noContent().build();
     }
+
 }
