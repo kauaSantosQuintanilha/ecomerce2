@@ -18,7 +18,7 @@ public class UsuarioResource {
           Usuario usuario = service.buscarUsuarioPorId(id);
           return ResponseEntity.ok(service.converterUsuarioParaUsuarioDTO(usuario));
       }
-    @GetMapping("/buscar")
+    @GetMapping("")
     public ResponseEntity<UsuarioDTO> buscarUsuarioPorEmail(@RequestParam String email) {
         Usuario usuario = service.buscarUsuarioPorEmail(email);
         return ResponseEntity.ok(service.converterUsuarioParaUsuarioDTO(usuario));
@@ -29,15 +29,15 @@ public class UsuarioResource {
         UsuarioDTO usuario = service.salvarUsuario(usuarioDTO);
         return ResponseEntity.ok(usuario);
     }
-    @PutMapping("/{id}")
+    @PutMapping("")
     public ResponseEntity<UsuarioDTO> atualizarUsuario(@PathVariable Long id,
                                                         @RequestBody UsuarioDTO usuarioDTO) {
         UsuarioDTO usuario = service.salvarUsuario(usuarioDTO);
         return ResponseEntity.ok(usuario);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
-        service.deletarUsuario(id);
+    public ResponseEntity<Void> deletarUsuario( @RequestBody UsuarioDTO usuarioDTO) {
+        UsuarioService.deletarUsuario(usuarioDTO.getId());
         return ResponseEntity.noContent().build();
     }
 

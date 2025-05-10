@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @Data
 public class PaymentsDTO {
     private Long id;
-    private LocalDateTime moment;
+    private LocalDateTime moments;
+
+
 
 }

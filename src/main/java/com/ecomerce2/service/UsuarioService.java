@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsuarioService {
     @Autowired
-    private  UsuarioRepository usuarioRepository;
+    private static UsuarioRepository usuarioRepository;
     public UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = converterUsuarioDTOParaUsuario(usuarioDTO);
         usuario = usuarioRepository.save(usuario);
@@ -56,7 +56,7 @@ public class UsuarioService {
     }
 
 
-    public void deletarUsuario(Long id) {
+    public static void deletarUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }
 }

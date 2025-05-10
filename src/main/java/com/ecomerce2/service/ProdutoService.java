@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProdutoService {
     @Autowired
-    private static ProdutoRepository produtoRepository;
-    public static ProdutoDTO salvarProduto(ProdutoDTO produtoDTO) {
+    private  ProdutoRepository produtoRepository;
+    public ProdutoDTO salvarProduto(ProdutoDTO produtoDTO) {
         Produto produto = converterProdutoDTOParaProduto(produtoDTO);
         produto = produtoRepository.save(produto);
         return converterProdutoParaProdutoDTO(produto);
@@ -22,6 +22,7 @@ public class ProdutoService {
         produtoDTO.setDescricao(produto.getDescricao());
         produtoDTO.setImagem(produto.getImagem());
         produtoDTO.setPreco(produto.getPreco());
+        produtoDTO.setCategoria(produto.getCategoria());
         return produtoDTO;
     }
 
@@ -32,6 +33,7 @@ public class ProdutoService {
         produto.setDescricao(produtoDTO.getDescricao());
         produto.setImagem(produtoDTO.getImagem());
         produto.setPreco(produtoDTO.getPreco());
+        produto.setCategoria(produtoDTO.getCategoria());
         return produto;
     }
 
@@ -51,7 +53,7 @@ public class ProdutoService {
     }
 
 
-    public static void deletarProduto(Long id) {
+    public void deletarProduto(Long id) {
         produtoRepository.deleteById(id);
     }
 

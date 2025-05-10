@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/produtos/")
+@RequestMapping("/api/produtos")
 public class ProdutoResource {
     @Autowired
     private ProdutoService produtoService;
@@ -19,7 +19,7 @@ public class ProdutoResource {
         return ResponseEntity.ok(produtoService.converterProdutoParaProdutoDTO(produto));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<ProdutoDTO> criarProduto(@RequestBody ProdutoDTO produtoDTO) {
         produtoDTO = produtoService.salvarProduto(produtoDTO);
         return ResponseEntity.ok(produtoDTO);
