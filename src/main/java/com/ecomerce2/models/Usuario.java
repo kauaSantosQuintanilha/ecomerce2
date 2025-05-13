@@ -4,6 +4,7 @@ import com.ecomerce2.dto.UsuarioDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,6 +17,12 @@ public class Usuario {
     private String cpf;
     private String senha;
     private String email;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Produto> produtos;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payments> payments;
 
     public Usuario() {}
     public Usuario(String nome, String cpf, String senha, String email) {

@@ -5,6 +5,7 @@ import com.ecomerce2.enums.Categoria;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -22,6 +23,13 @@ public class Produto {
     private Categoria categoria;
 
 
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+    private Admin admin;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     public Produto() {}
     public Produto(Long id, String nome, String descricao, String imagem, Double preco, Categoria categoria) {

@@ -3,6 +3,8 @@ package com.ecomerce2.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 
 @Data
 @Entity
@@ -17,6 +19,9 @@ public class Admin {
     private String endereco;
     private String cnpj;
 
+
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Produto> produtos;
 
     public Admin() {}
     public Admin(Long id, String nome, String email, String cnpj) {
